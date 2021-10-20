@@ -1,0 +1,81 @@
+﻿<Window x:Class="PasswordGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PasswordGenerator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="475" Width="525" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
+    <Grid ShowGridLines="False" Margin="75, 25,75, 50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="0.35*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="passwordGenerator" Content="Password Generator" Grid.Row="0"
+               Grid.ColumnSpan="3" Grid.Column="0" HorizontalAlignment="Center"
+               VerticalAlignment="Center" FontSize="25" Foreground="Indigo" 
+               FontFamily="Georgia" FontWeight="Bold" RenderTransformOrigin="0.482,-0.316"/>
+        <Label x:Name="length" Content="Length:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
+        <ComboBox x:Name="comboBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="140" SelectedIndex="0" FontSize="14">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <ComboBoxItem Content="6"/>
+            <ComboBoxItem Content="7"/>
+            <ComboBoxItem Content="8"/>
+            <ComboBoxItem Content="9"/>
+            <ComboBoxItem Content="10"/>
+            <ComboBoxItem Content="11"/>
+            <ComboBoxItem Content="12"/>
+            <ComboBoxItem Content="13"/>
+            <ComboBoxItem Content="14"/>
+            <ComboBoxItem Content="15"/>
+        </ComboBox>
+        <Label x:Name="uppercase" Content="Include uppercase characters:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
+        <Label x:Name="uppercaseEg" Content="(ABCDEF)" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Grid.ColumnSpan="2" Margin="25,9,0,30" Grid.RowSpan="2"/>
+        <CheckBox x:Name="upperchaseCheckBox" Content="" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Checked="uppercaseCheckBox_Checked" Unchecked="uppercaseCheckBox_Unchecked" RenderTransformOrigin="0.6,-0.067" Margin="0,9,18,9"/>
+        <Label x:Name="numbers" Content="Include numbers:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
+        <Label x:Name="numbersEg" Content="(123456)" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Grid.ColumnSpan="2" Margin="25,4,0,1"/>
+        <CheckBox x:Name="numbersCheckBox" Content="" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Checked="numbersCheckBox_Checked" Unchecked="numbersCheckBox_Unchecked"/>
+        <Label x:Name="symbols" Content="Include symbols:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
+        <Label x:Name="symbolsEg" Content="(?!@#$%^&amp;*)" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Grid.ColumnSpan="2" Margin="25,0,0,5"/>
+        <CheckBox x:Name="symbolsCheckBox" Content="" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="symbolsCheckBox_Checked" Unchecked="symbolsCheckBox_Unchecked"/>
+        <Label x:Name="showPassword" Content="" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" FontSize="14" FontWeight="Bold"/>
+        <Rectangle Fill="White" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" Height="50" Stroke="#FFB2B2B2" Width="250"/>
+        <Button x:Name="button" Content="Generate" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" Width="100" Height="30" FontSize="14" Click="btnGeneratePassword_Click" BorderBrush="{x:Null}" FontFamily="Segoe UI Semibold">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#FF2D89EF"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF5AAEE8"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</Window>
