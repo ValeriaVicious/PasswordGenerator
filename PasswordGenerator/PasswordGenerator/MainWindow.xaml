@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordGenerator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="475" Width="525" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
+        Title="Password Generator" Height="475" Width="525" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" Cursor="Hand" Icon="password_icon_183875.ico">
     <Grid ShowGridLines="False" Margin="75, 25,75, 50">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
@@ -17,14 +17,14 @@
             <RowDefinition Height="1.5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="0.35*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="219"></ColumnDefinition>
+            <ColumnDefinition Width="19*"></ColumnDefinition>
+            <ColumnDefinition Width="55*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label x:Name="passwordGenerator" Content="Password Generator" Grid.Row="0"
                Grid.ColumnSpan="3" Grid.Column="0" HorizontalAlignment="Center"
-               VerticalAlignment="Center" FontSize="25" Foreground="Indigo" 
-               FontFamily="Georgia" FontWeight="Bold" RenderTransformOrigin="0.482,-0.316"/>
+               VerticalAlignment="Center" FontSize="25" Foreground="#FF2B76E2" 
+               FontFamily="Georgia" FontWeight="Bold" RenderTransformOrigin="0.482,-0.316" Background="{x:Null}"/>
         <Label x:Name="length" Content="Length:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
         <ComboBox x:Name="comboBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="140" SelectedIndex="0" FontSize="14">
             <ComboBox.Background>
@@ -54,7 +54,7 @@
         <Label x:Name="symbolsEg" Content="(?!@#$%^&amp;*)" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Grid.ColumnSpan="2" Margin="25,0,0,5"/>
         <CheckBox x:Name="symbolsCheckBox" Content="" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="symbolsCheckBox_Checked" Unchecked="symbolsCheckBox_Unchecked"/>
         <Label x:Name="showPassword" Content="" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" FontSize="14" FontWeight="Bold"/>
-        <Rectangle Fill="White" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" Height="50" Stroke="#FFB2B2B2" Width="250"/>
+        <Rectangle Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" Height="50" Stroke="#FF0051FF" Width="250"/>
         <Button x:Name="button" Content="Generate" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" Width="100" Height="30" FontSize="14" Click="btnGeneratePassword_Click" BorderBrush="{x:Null}" FontFamily="Segoe UI Semibold">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
