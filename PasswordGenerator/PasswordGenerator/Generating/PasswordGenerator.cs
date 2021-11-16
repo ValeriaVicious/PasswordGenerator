@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PasswordGenerator.Randomizing;
 
-namespace PasswordGenerator.Generation
+namespace PasswordGenerator.Generating
 {
     public class StringGenerator
     {
@@ -18,7 +19,7 @@ namespace PasswordGenerator.Generation
 
         private readonly StringBuilder _result;
         private readonly StringBuilder _alphabet;
-        private readonly Random _randomGenerator;
+        private readonly IUnbiasedRandom _unbiasedRandomGenerator;
 
 
 
@@ -63,7 +64,7 @@ namespace PasswordGenerator.Generation
         {
             _result = new StringBuilder(maxLength);
             _alphabet = new StringBuilder(TotalAlphabetsLength);
-            _randomGenerator = new Random();
+            _unbiasedRandomGenerator = new SecureRandom();
         }
 
 
@@ -156,13 +157,15 @@ namespace PasswordGenerator.Generation
             if (_alphabet.Length == 0)
                 return string.Empty;
 
-            for (int i = 0; i < length; ++i)
-            {
-                var alphabetCharIndex = _randomGenerator
-                    .Next(_alphabet.Length);
+            var randomIndexes = new uint[length];
 
+            _unbiasedRandomGenerator.GetNormalizedIndex(
+                randomIndexes, (uint)_alphabet.Length);
+
+            for (var i = 0; i < length; ++i)
+            {
                 _result.Append(
-                    _alphabet[alphabetCharIndex]);
+                    _alphabet[(int)randomIndexes[i]]);
             }
 
             var resultString = _result.ToString();

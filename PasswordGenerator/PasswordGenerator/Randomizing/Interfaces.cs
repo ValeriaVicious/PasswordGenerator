@@ -1,0 +1,73 @@
+﻿using System;
+
+namespace PasswordGenerator.Randomizing
+{
+    public interface IUnbiasedRandom
+    {
+        object SyncRoot { get; }
+
+
+
+        byte GetUInt8();
+        byte GetUInt8(byte maxValue);
+
+        byte GetNormalizedUInt8(byte targetSamplingLength);
+
+        byte GetNormalizedIndex(byte targetSamplingLength);
+
+        void GetUInt8(byte[] buffer);
+        void GetUInt8(byte[] buffer, byte maxValue);
+
+        void GetNormalizedUInt8(byte[] buffer, byte targetSamplingLength);
+
+        void GetNormalizedIndex(byte[] buffer, byte targetSamplingLength);
+
+
+
+        ushort GetUInt16();
+        ushort GetUInt16(ushort maxValue);
+
+        ushort GetNormalizedUInt16(ushort targetSamplingLength);
+
+        ushort GetNormalizedIndex(ushort targetSamplingLength);
+
+        void GetUInt16(ushort[] buffer);
+        void GetUInt16(ushort[] buffer, ushort maxValue);
+
+        void GetNormalizedUInt16(ushort[] buffer, ushort targetSamplingLength);
+
+        void GetNormalizedIndex(ushort[] buffer, ushort targetSamplingLength);
+
+
+
+        uint GetUInt32();
+        uint GetUInt32(uint maxValue);
+
+        uint GetNormalizedUInt32(uint targetSamplingLength);
+
+        uint GetNormalizedIndex(uint targetSamplingLength);
+
+        void GetUInt32(uint[] buffer);
+        void GetUInt32(uint[] buffer, uint maxValue);
+
+        void GetNormalizedUInt32(uint[] buffer, uint targetSamplingLength);
+
+        void GetNormalizedIndex(uint[] buffer, uint targetSamplingLength);
+
+
+
+        ulong GetUInt64();
+        ulong GetUInt64(ulong maxValue);
+
+        ulong GetNormalizedUInt64(ulong targetSamplingLength);
+
+        ulong GetNormalizedIndex(ulong targetSamplingLength);
+
+        void GetUInt64(ulong[] buffer);
+        void GetUInt64(ulong[] buffer, ulong maxValue);
+
+        void GetNormalizedUInt64(ulong[] buffer, ulong targetSamplingLength);
+
+        void GetNormalizedIndex(ulong[] buffer, ulong targetSamplingLength);
+    }
+}

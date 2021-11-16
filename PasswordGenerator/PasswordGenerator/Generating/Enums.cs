@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PasswordGenerator.Generation
+namespace PasswordGenerator.Generating
 {
     [Flags]
     public enum PasswordGenerationAlphabet : uint

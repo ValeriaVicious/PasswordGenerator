@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using PasswordGenerator.Generation;
+using PasswordGenerator.Generating;
 
 
 namespace PasswordGenerator
