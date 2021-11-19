@@ -1,61 +1,147 @@
 ﻿<Window x:Class="PasswordGenerator.MainWindow"
+        d:DataContext="{d:DesignInstance local:MainWindow}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordGenerator"
+        xmlns:controls="clr-namespace:PasswordGenerator.Controls"
         mc:Ignorable="d"
-        Title="Password Generator" Height="475" Width="525" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" Cursor="Hand" Icon="password_icon_183875.ico">
-    <Grid ShowGridLines="False" Margin="75, 25,75, 50">
+        Background="{StaticResource {x:Static SystemColors.MenuBarBrushKey}}"
+        Cursor="Hand"
+        ResizeMode="NoResize"
+        Title="Password Generator"
+        MinWidth="450" MinHeight="450"
+        Width="450" Height="450"
+        MaxWidth="450" MaxHeight="450">
+
+    <Grid Margin="35 15 35 15">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="0.8*"></RowDefinition>
-            <RowDefinition Height="0.8*"></RowDefinition>
-            <RowDefinition Height="0.8*"></RowDefinition>
-            <RowDefinition Height="0.8*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="219"></ColumnDefinition>
-            <ColumnDefinition Width="19*"></ColumnDefinition>
-            <ColumnDefinition Width="55*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Label x:Name="passwordGenerator" Content="Password Generator" Grid.Row="0"
-               Grid.ColumnSpan="3" Grid.Column="0" HorizontalAlignment="Center"
-               VerticalAlignment="Center" FontSize="25" Foreground="#FF2B76E2" 
-               FontFamily="Georgia" FontWeight="Bold" RenderTransformOrigin="0.482,-0.316" Background="{x:Null}"/>
-        <Label x:Name="length" Content="Length:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
-        <ComboBox x:Name="comboBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="140" SelectedIndex="0" FontSize="14">
-            <ComboBox.Background>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </ComboBox.Background>
-            <ComboBoxItem Content="6"/>
-            <ComboBoxItem Content="7"/>
-            <ComboBoxItem Content="8"/>
-            <ComboBoxItem Content="9"/>
-            <ComboBoxItem Content="10"/>
-            <ComboBoxItem Content="11"/>
-            <ComboBoxItem Content="12"/>
-            <ComboBoxItem Content="13"/>
-            <ComboBoxItem Content="14"/>
-            <ComboBoxItem Content="15"/>
-        </ComboBox>
-        <Label x:Name="uppercase" Content="Include uppercase characters:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
-        <Label x:Name="uppercaseEg" Content="(ABCDEF)" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Grid.ColumnSpan="2" Margin="25,9,0,30" Grid.RowSpan="2"/>
-        <CheckBox x:Name="upperchaseCheckBox" Content="" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Checked="uppercaseCheckBox_Checked" Unchecked="uppercaseCheckBox_Unchecked" RenderTransformOrigin="0.6,-0.067" Margin="0,9,18,9"/>
-        <Label x:Name="numbers" Content="Include numbers:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
-        <Label x:Name="numbersEg" Content="(123456)" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Grid.ColumnSpan="2" Margin="25,4,0,1"/>
-        <CheckBox x:Name="numbersCheckBox" Content="" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Checked="numbersCheckBox_Checked" Unchecked="numbersCheckBox_Unchecked"/>
-        <Label x:Name="symbols" Content="Include symbols:" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14"/>
-        <Label x:Name="symbolsEg" Content="(?!@#$%^&amp;*)" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Grid.ColumnSpan="2" Margin="25,0,0,5"/>
-        <CheckBox x:Name="symbolsCheckBox" Content="" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Checked="symbolsCheckBox_Checked" Unchecked="symbolsCheckBox_Unchecked"/>
-        <Label x:Name="showPassword" Content="" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" FontSize="14" FontWeight="Bold"/>
-        <Rectangle Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" Height="50" Stroke="#FF0051FF" Width="250"/>
-        <Button x:Name="button" Content="Generate" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0" Width="100" Height="30" FontSize="14" Click="btnGeneratePassword_Click" BorderBrush="{x:Null}" FontFamily="Segoe UI Semibold">
+
+        <Label Grid.Row="0"
+               Content="Password Generator"
+               Foreground="#FF2B76E2"
+               FontSize="25" FontWeight="Bold"
+               FontFamily="Georgia"
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid Height="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="Length:"
+                       FontSize="14"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <controls:IntegerUpDown Grid.Column="1"
+                                        Minimum="{Binding Path=MinLength, Mode=TwoWay}"
+                                        Maximum="{Binding Path=MaxLength, Mode=TwoWay}"
+                                        Value="{Binding Path=Length, Mode=TwoWay}"
+                                        Step="1"
+                                        FontSize="14"
+                                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <controls:IntegerUpDown.Background>
+                        <LinearGradientBrush EndPoint="0 1" StartPoint="0 0">
+                            <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </controls:IntegerUpDown.Background>
+                </controls:IntegerUpDown>
+            </Grid>
+            <Grid Height="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="Include lowercase characters:"
+                       FontSize="14"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="1"
+                          Content=" abcde..."
+                          IsChecked="{Binding Path=IncludeLowerCaseCharacters, Mode=TwoWay}"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Height="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="Include uppercase characters:"
+                       FontSize="14"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="1"
+                          Content=" ABCDE..."
+                          IsChecked="{Binding Path=IncludeUpperCaseCharacters, Mode=TwoWay}"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Height="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="Include digits:"
+                       FontSize="14"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="1"
+                          Content=" 12345..."
+                          IsChecked="{Binding Path=IncludeDigits, Mode=TwoWay}"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Height="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="Include special characters:"
+                       FontSize="14"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="1"
+                          Content=" ?!@#$%^&amp;*"
+                          IsChecked="{Binding Path=IncludeSpecialCharacters, Mode=TwoWay}"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+        <TextBox Grid.Row="2"
+                 x:Name="PasswordTextBox"
+                 MinHeight="50"
+                 Text="Click on the generate button"
+                 FocusVisualStyle="{x:Null}"
+                 Background="{StaticResource {x:Static SystemColors.MenuBarBrushKey}}"
+                 BorderBrush="#FF0051FF"
+                 FontSize="15" FontWeight="Bold"
+                 IsReadOnly="True"
+                 IsReadOnlyCaretVisible="False"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                 BorderThickness="1"
+                 Margin="5"/>
+        <Button Grid.Row="3"
+                Width="150" Height="30"
+                Content="Generate"
+                FontSize="15"
+                FontFamily="Segoe UI Semibold"
+                IsEnabled="{Binding Path=GenerationEnabled, Mode=TwoWay}"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                BorderThickness="0"
+                Margin="5"
+                Click="GeneratePasswordButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#FF2D89EF"/>
@@ -69,9 +155,19 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
+
                     <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#FF5AAEE8"/>
+                        <Trigger Property="IsEnabled"
+                                 Value="False">
+                            <Setter Property="Background"
+                                    Value="#FF0D629F"/>
+                            <Setter Property="Foreground"
+                                    Value="#FFBEBEBE"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="#FF2FAFF8"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
